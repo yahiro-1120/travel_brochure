@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+
+      <h3>旅行の計画を探せる</h3>
+      <p>このサイトでは、しおりを作成したり、<br>
+         他ユーザーのしおりを確認できます。<br>
+         計画を立てるのが苦手な方も参考に！</p>
+    </div>
+  </div>
+
+  <div class="btn-wrapper col-10 mx-auto">
+    <div class="row">
+      <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-outline-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+    </div>
+    <div class="row">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary btn-sm btn-block mb-3 sign_in" %>
+    </div>
+    <div class="row">
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-success btn-sm btn-block sign_up" %>
+    </div>
+  </div>
+</div>
