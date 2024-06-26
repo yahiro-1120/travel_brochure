@@ -18,6 +18,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     @post = Post.new
     @user = current_user
+    @post_user = @post.user
   end
 
   def show
@@ -26,10 +27,20 @@ class PostsController < ApplicationController
   end
 
   def edit
+    post = Post.find(params[:id])
+    unless post.user.id == current_user.id
+      redirect_to "/posts"
+    end
+
     @post = Post.find(params[:id])
   end
 
   def update
+    post = Post.find(params[:id])
+    unless post.user.id == current_user.id
+      redirect_to "/posts"
+    end
+
     @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to post_path(@post.id)
