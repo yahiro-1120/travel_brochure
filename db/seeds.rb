@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+tom = User.find_or_create_by!(email: "tom@example.com") do |user|
+  user.name = "Tom"
+  user.password = "password"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
+end 
+
+Post.find_or_create_by!(pref: "岐阜県") do |post|
+  post.title = "日帰り"
+  post.body = "11時飛騨・高山、１２時お昼ごはん"
+  post.user = tom
+end
