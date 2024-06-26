@@ -11,6 +11,10 @@ class User < ApplicationRecord
     end
   end
 
+  def inspect
+    "User: #{name} (#{email})"
+  end
+
   has_many :posts, dependent: :destroy
 
   has_one_attached :profile_image
