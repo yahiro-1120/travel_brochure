@@ -11,9 +11,6 @@ class User < ApplicationRecord
     end
   end
 
-  def inspect
-    "User: #{name} (#{email})"
-  end
 
   has_many :posts, dependent: :destroy
 
