@@ -9,13 +9,11 @@
 tom = User.find_or_create_by!(email: "tom@example.com") do |user|
   user.name = "Tom"
   user.password = "password"
-  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
 end
 
 jun = User.find_or_create_by!(email: "jun@example.com") do |user|
   user.name = "Jun"
   user.password = "password"
-  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user2.jpg"), filename:"sample-user2.jpg")
 end
 
 Post.find_or_create_by!(pref: "岐阜県") do |post|
