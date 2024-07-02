@@ -1,0 +1,12 @@
+<% posts.each do |post| %>
+<div class="container">
+  <ul class="card">
+    <li class="item">
+      <p><%= post.user.name %></p>
+      <p><%= post.pref %></p>
+      <p><%= post.title %></p>
+      <%= link_to "詳細", post_path(post.id), class: "btn" %>
+    </li>
+  </ul>
+</div>
+<% end %>
