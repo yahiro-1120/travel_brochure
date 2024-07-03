@@ -1,4 +1,9 @@
-class UsersController < ApplicationController
+class Public::UsersController < ApplicationController
+
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
@@ -10,7 +15,7 @@ class UsersController < ApplicationController
     unless user.id == current_user.id
       redirect_to user_path(current_user.id)
     end
-    
+
     @user = User.find(params[:id])
   end
 
@@ -18,8 +23,8 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     unless user.id == current_user.id
       redirect_to user_path(current_user.id)
-    end 
-    
+    end
+
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user.id)

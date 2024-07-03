@@ -1,0 +1,35 @@
+<%= image_tag @user.get_profile_image(50,50) %>
+<p><%= @user.name %></p>
+<p><%= @post.created_at.strftime('%Y.%m.%d') %></p>
+<h2><%= @post.title %></h2>
+
+<div>
+  <p>都道府県：<%= @post.pref %></p>
+  <p>スケジュール</p>
+  <p><%= @post.body %></p>
+  <% if @post.user == current_user %>
+    <%= link_to "投稿編集", edit_post_path(@post.id) %>
+    <%= link_to "投稿削除", post_path(@post), method: :delete %>
+  <% end %>
+</div>
+
+<div>
+  <p>コメント:<%= @post.post_comments.count %>件</p>
+  <% @post.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
+    <%= post_comment.user.name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+    <%= post_comment.body %>
+
+    <% if post_comment.user == current_user %>
+      <%= link_to "コメント削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_with model: [@post, @post_comment] do |f| %>
+    <%= f.text_area :body, rows: '3', placeholder: "コメントする" %>
+    <%= f.submit "送信" %>
+  <% end %>
+</div>

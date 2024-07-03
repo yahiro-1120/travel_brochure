@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
@@ -24,6 +24,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @post_comment = PostComment.new
+    @post_comments = @post.post_comments
   end
 
   def edit
