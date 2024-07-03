@@ -1,7 +1,7 @@
 <h2>検索結果</h2>
   <% if @model == 'user' %>
-    <%= render 'users/index', users: @records %>
+    <%= render 'public/users/index', users: @records %>
 
   <% elsif @model == 'post' %>
-    <%= render 'posts/index', posts: @records %>
+    <%= render 'public/posts/index', posts: @records %>
   <% end %>
