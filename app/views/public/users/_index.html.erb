@@ -1,10 +1,17 @@
-<% users.each do |user| %>
+<div class="album py-5 bg-light">
   <div class="container">
-    <ul class="card">
-      <li class="item">
-        <p><%= user.name %></p>
-        <%= link_to "詳細", user_path(user.id), class: "btn" %>
-      </li>
-    </ul>
+    <div class="row">
+      <% users.each do |user| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-img-top"></div>
+          <div class="card-body">
+            <p class="card-text"><%= user.name %></p>
+            <%= link_to "詳細", user_path(user.id), class: "btn btn-sm btn-outline-secondary" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>

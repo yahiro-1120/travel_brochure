@@ -1,35 +1,56 @@
-<%= image_tag @user.get_profile_image(50,50) %>
-<p><%= @user.name %></p>
-<p><%= @post.created_at.strftime('%Y.%m.%d') %></p>
-<h2><%= @post.title %></h2>
+<div class="title">
+  <h2><%= @post.title %></h2>
+</div>
 
-<div>
-  <p>都道府県：<%= @post.pref %></p>
-  <p>スケジュール</p>
-  <p><%= @post.body %></p>
+<div class="post-info">
+  <%= link_to user_path(@post.user) do %>
+    <i class="fa-solid fa-user-pen"><%= @user.name %></i>
+  <% end %>
+  <p>作成日: <%= @post.created_at.strftime('%Y.%m.%d') %></p>
   <% if @post.user == current_user %>
-    <%= link_to "投稿編集", edit_post_path(@post.id) %>
-    <%= link_to "投稿削除", post_path(@post), method: :delete %>
+        <%= link_to "投稿編集", edit_post_path(@post.id), class: "btn btn-sm btn-outline-secondary" %>
+        <%= link_to "投稿削除", post_path(@post), method: :delete, class: "btn btn-sm btn-outline-secondary" %>
   <% end %>
 </div>
 
-<div>
-  <p>コメント:<%= @post.post_comments.count %>件</p>
-  <% @post.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-    <%= post_comment.body %>
+<div class="container">
+  <div class="mx-auto row">
+    <div class="col-4">
+      <div class="post-area">
+        <h4>都道府県</h4>
+        <p><%= @post.pref %></p>
+        <h4>スケジュール</h4>
 
-    <% if post_comment.user == current_user %>
-      <%= link_to "コメント削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
+         <ul class="cbp_tmtimeline">
+          <li>
+            <%= @post.body %>
+          </li>
+        </ul>
+      </div>
 
-<div>
-  <%= form_with model: [@post, @post_comment] do |f| %>
-    <%= f.text_area :body, rows: '3', placeholder: "コメントする" %>
-    <%= f.submit "送信" %>
-  <% end %>
+      <div class="comment-form">
+        <%= form_with model: [@post, @post_comment] do |f| %>
+          <%= f.text_area :body, rows: '3', placeholder: "コメントを入力" %>
+          <%= f.submit "コメントする", class: "btn btn-sm btn-outline-secondary" %>
+        <% end %>
+      </div>
+
+
+      <div class="comment-button">
+        <a class="btn btn-sm btn-outline-secondary" data-toggle="collapse" href="#comments">コメントを見る</a>
+      </div>
+      <div class="comment", id="comments">
+        <p>コメント:<%= @post.post_comments.count %>件</p>
+        <% @post.post_comments.each do |post_comment| %>
+        <%= post_comment.user.name %>
+        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        <%= post_comment.body %>
+
+        <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-sm btn-outline-secondary" %>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

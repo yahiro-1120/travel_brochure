@@ -1,23 +1,37 @@
-<h2>投稿編集</h2>
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
+<div class="title">
+  <h2>しおり編集</h2>
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
       <li><%= message %></li>
+      <% end %>
+    </ul>
   <% end %>
-  </ul>
-<% end %>
+</div>
 
+<div class="post-form">
 <%= form_with model: @post do |f| %>
+  <div class="post-content">
+    <i class="fa-solid fa-location-dot", style="font-size: 24px;"></i>
+    <h4>都道府県</h4>
+    <%= f.text_field :pref, :size=>"50", placeholder: "都道府県" %>
+  </div>
 
-  <h4>都道府県</h4>
-  <%= f.text_field :pref %>
+  <div class="post-content">
+    <i class="fa-solid fa-pencil", style="font-size: 24px;"></i>
+    <h4>しおりのタイトル</h4>
+    <%= f.text_field :title, :size=>"50", placeholder: "タイトル" %>
+  </div>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+  <div class="post-content">
+    <i class="fa-solid fa-calendar-days", style="font-size: 24px;"></i>
+    <h4>スケジュール</h4>
+    <%= f.text_area :body, :size=>"50", placeholder: "スケジュール" %>
+  </div>
 
-  <h4>スケジュール</h4>
-  <%= f.text_area :body %>
-
-  <%= f.submit '保存' %>
+  <div class="submit">
+    <%= f.submit '保存' %>
 <% end %>
+</div>
+

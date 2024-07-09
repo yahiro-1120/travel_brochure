@@ -25,6 +25,10 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-​
-# 実装機能リストURL
+
+## 使用素材
+- フリーイラスト素材として以下を使用
+ - O-DAN(https://o-dan.net/ja/)​
+ 
+## 実装機能リストURL
 https://docs.google.com/spreadsheets/d/1wzV3bPxr0DaQUuvQ9LGYtWxAMFtZeFAchiNMiTf39Yg/edit?usp=sharing

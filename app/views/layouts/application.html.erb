@@ -6,16 +6,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <script src="https://kit.fontawesome.com/xxxxxxxxxx.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/447ffaa220.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-md navbar-light" style="background-color: #aad5ff;">
+      <nav class="navbar navbar-expand-md navbar-light" style="background-color: #DDDDDD;">
         <div class="container">
           <a class="navbar-brand" href="/">Travel Brochure</a>
+          <%= render "public/searches/form" %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -26,13 +27,13 @@
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to '投稿一覧', posts_path, class: 'nav-link text-dark' %>
+              <%= link_to 'みんなのしおり', posts_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
               <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-dark' %>
+              <%= link_to 'しおり作成', new_post_path, class: 'nav-link text-dark' %>
             </li>
             <% else %>
             <li class="nav-item">
@@ -47,7 +48,6 @@
         </div>
       </nav>
     </header>
-    <%= render "public/searches/form" %>
     <%= yield %>
   </body>
 </html>

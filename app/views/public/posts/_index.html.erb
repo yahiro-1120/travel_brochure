@@ -1,12 +1,19 @@
-<% posts.each do |post| %>
-<div class="container">
-  <ul class="card">
-    <li class="item">
-      <p><%= post.user.name %></p>
-      <p><%= post.pref %></p>
-      <p><%= post.title %></p>
-      <%= link_to "詳細", post_path(post.id), class: "btn" %>
-    </li>
-  </ul>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <% posts.each do |post| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-img-top"></div>
+          <div class="card-body">
+            <p class="card-text"><%= post.user.name %></p>
+            <p class="card-text"><%= post.pref %></p>
+            <p class="card-text"><%= post.title %></p>
+            <%= link_to "詳細", post_path(post.id), class: "btn btn-sm btn-outline-secondary" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<% end %>
