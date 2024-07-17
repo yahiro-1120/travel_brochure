@@ -28,6 +28,10 @@
         </ul>
       </div>
 
+      <div>
+        <%= render "public/bookmarks/bookmark", post: @post %>
+      </div>
+
       <div class="comment-form">
         <%= form_with model: [@post, @post_comment] do |f| %>
           <%= f.text_area :body, rows: '3', placeholder: "コメントを入力" %>

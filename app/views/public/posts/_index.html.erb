@@ -10,6 +10,9 @@
             <p class="card-text"><%= post.pref %></p>
             <p class="card-text"><%= post.title %></p>
             <%= link_to "詳細", post_path(post.id), class: "btn btn-sm btn-outline-secondary" %>
+            <div class="bookmark">
+              <%= render "public/bookmarks/bookmark", post: post %>
+            </div>
           </div>
         </div>
       </div>

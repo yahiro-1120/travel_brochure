@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
+      resource :bookmark, only: [:create, :destroy]
     end
 
     resources :users
