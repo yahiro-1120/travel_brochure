@@ -15,17 +15,19 @@
 
 <div class="container">
   <div class="mx-auto row">
-    <div class="col-4">
+    <div class="col-3">
       <div class="post-area">
         <h4>都道府県</h4>
         <p><%= @post.pref %></p>
         <h4>スケジュール</h4>
 
          <ul class="cbp_tmtimeline">
-          <li>
-            <%= @post.body %>
-          </li>
-        </ul>
+         <% @post.maps.each do |post| %>
+           <li>
+             <%= post.address %>
+           </li>
+         <% end %>
+         </ul>
       </div>
 
       <div>
@@ -58,6 +60,55 @@
         <% end %>
         </div>
         <% end %>
+    </div>
+
+    <div class="col-1"></div>
+
+    <div class="col-8">
+      <div class="map">
+        <div id="map"></div>
+      </div>
+
+        <script>
+  　　　　　　let map;
+          let geocoder;
+          let markers = [];
+
+          function initMap() {
+            geocoder = new google.maps.Geocoder();
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 40.7828, lng:-73.9653},
+            zoom: 11,
+            })
+
+            const locations = <%= raw @locations.to_json %>;
+
+            locations.forEach((location) => {
+              if (location.latitude && location.longitude) {
+                const marker = new google.maps.Marker({
+                  position: { lat: location.latitude, lng: location.longitude },
+                  map: map,
+                  title: location.address
+                });
+
+                const infowindow = new google.maps.InfoWindow({
+                  content: location.address
+                });
+
+                marker.addListener('click', () => {
+                  infowindow.open(map, marker);
+                });
+
+                markers.push(marker);
+              }
+            });
+            console.log(locations);
+            if (locations.length > 0 && locations[0].latitude && locations[0].longitude) {
+              map.setCenter({ lat: locations[0].latitude, lng: locations[0].longitude });
+            }
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_Key'] %>&callback=initMap" async defer></script>
     </div>
   </div>
 </div>

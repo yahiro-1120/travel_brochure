@@ -1,24 +1,33 @@
-<div class="main-visual">
-  <div class="main-visual-content">
-    <h1>旅行の計画を探せる</h1>
-    <p>このサイトでは、自身のしおりを作成、<br>
-      また、他ユーザーのしおりを確認できます。<br>
-      計画を立てるのが苦手な方も参考に！</p>
-  </div>
+<div class="main-title">
+  <h1>Travel Brochure</h1>
 </div>
+
 
 <div class="container">
   <div class="row">
-    <div class="btn-wrapper col-lg-6 mx-auto">
-      <div class="row">
-        <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-outline-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+    <div class="main-visual-text-area col-6">
+      <div class="main-visual-text">
+        <h2>旅行の計画を探せる</h2>
+        <p>このサイトでは、自身のしおりを作成、<br>
+           また、他ユーザーのしおりを確認できます。<br>
+           計画を立てるのが苦手な方も参考に！
+        </p>
       </div>
-      <div class="row">
-        <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary btn-sm btn-block mb-3 sign_in" %>
-      </div>
-      <div class="row">
-        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-success btn-sm btn-block sign_up" %>
-      </div>
+    </div>
+
+    <div class="main-visual-image-area col-6">
+      <div class="main-visual-image"></div>
     </div>
   </div>
 </div>
+
+
+
+    <div class="form-area">
+      <h4>登録はこちらから⇩</h4>
+      <div class="btn-wrapper">
+        <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-outline-secondary btn-md sign_in", method: :post %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary btn-md sign_in" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-success btn-md sign_up" %>
+      </div>
+   </div>

@@ -6,25 +6,59 @@
   box-sizing: border-box;
 }
 
+header {
+  border-bottom:1px solid #005FFF;
+}
+
 .img {
   clip-path: circle(35%);
 }
 
-.main-visual {
+.main-title {
+  padding-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+  border-bottom:1px solid #005FFF;
+  color: #005FFF;
+}
+
+.main-visual-text-area {
+  border:1px solid #005FFF;
+  margin-top: 50px;
+  position: relative;
+  background-color: #FFFFF0;
+  border-radius: 50%;
+}
+
+.main-visual-image {
   width: 100%;
-  height: 800px;
-  background-image: url('../images/hamburg-3071437_1280.jpg');
+  height: 400px;
+  background-image: url('../images/notepad-1130743_640.jpg');
   background-repeat:no-repeat;
   background-color: rgba(255, 255, 255, 0.1);
   background-blend-mode: darken;
   background-size: 100% 770px;
 }
 
-.main-visual-content {
-  color: #fff;
-  font-size: 18px;
-  padding-top: 50px;
+.main-visual-text {
+  color: #4689FF;
+  font-size: 16px;
+  padding-top: 100px;
   text-align: center;
+  line-height: 2.0;
+}
+
+.form-area {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  text-align: center;
+  color: #4689FF;
+
+}
+
+body {
+  background-color: #FFFFF0;
 }
 
 .card {
@@ -99,26 +133,44 @@ li {
 }
 
 .comment {
-  diplay: inline-block;
   position: relative;
-  border: 1px solid #AAAAAA;
-  margin: 20px;
-  border-radius: 5px;
-}
-
-.comment::before, .comment::after {
-  position: absolute;
-  content: "";
-  bottom: 100%;
-  left: 50%;
+  margin: 2em 0 2em 40px;
+  padding: 15px;
+  background: #EEEEEE;
+  border-radius: 30px;
 }
 
 .comment::before {
-  border: 10px solid transparent;
-  border-bottom: 10px solid #AAAAAA;
+  position: absolute;
+  content: "";
+  left: -38px;
+  width: 13px;
+  height: 12px;
+  top: 0;
+  background: #EEEEEE;
+  border-radius: 50%;
 }
 
 .comment::after {
-  border: 10px solid transparent;
-  border-left: 10px solid #ffffff;
+  content: "";
+  position: absolute;
+  left: -24px;
+  width: 20px;
+  height: 18px;
+  top: 3px;
+  background: #EEEEEE;
+  border-radius: 50%;
 }
+
+.comment-text {
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  width: 100%;
+  height: calc(100vh - 88px - 170px);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+

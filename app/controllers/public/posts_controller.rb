@@ -8,6 +8,13 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+      address_list = params[:post][:address].split(',')
+      address_list.each do |address|
+        map = Map.new
+        map.address = address
+        map.post_id = @post.id
+        map.save
+      end
       redirect_to post_path(@post.id)
     else
       render :new
@@ -26,6 +33,7 @@ class Public::PostsController < ApplicationController
     @user = @post.user
     @post_comment = PostComment.new
     @post_comments = @post.post_comments
+    @locations = @post.maps do |map| { address: map.address, latitude: map.latitude, longitude: map.longitude } end
   end
 
   def edit
@@ -35,6 +43,9 @@ class Public::PostsController < ApplicationController
     end
 
     @post = Post.find(params[:id])
+    @maps = Map.where(post_id: params[:id])
+    @address = @maps.pluck(:address)
+    @address_txt = @address.join(',')
   end
 
   def update
@@ -45,6 +56,15 @@ class Public::PostsController < ApplicationController
 
     @post = Post.find(params[:id])
     if @post.update(post_params)
+      Map.where(post_id: @post.id).destroy_all
+
+      address_list = params[:post][:address].split(',')
+      address_list.each do |address|
+        map = Map.new
+        map.address = address
+        map.post_id = @post.id
+        map.save
+      end
       redirect_to post_path(@post.id)
     else
       render :edit
@@ -62,7 +82,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:pref, :facility_name, :title, :body)
+    params.require(:post).permit(:pref, :facility_name, :title, :body,)
   end
 
 end

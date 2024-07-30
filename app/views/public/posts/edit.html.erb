@@ -27,11 +27,18 @@
   <div class="post-content">
     <i class="fa-solid fa-calendar-days", style="font-size: 24px;"></i>
     <h4>スケジュール</h4>
-    <%= f.text_area :body, :size=>"50", placeholder: "スケジュール" %>
+    <%= f.text_area :address,value: @address_txt, :size=>"50x10", placeholder:
+    "例) 9:00 東京駅に集合,
+    10:00 東京タワーに到着！,
+    11:00 スカイツリーへ！
+
+    お手数おかけしますが、
+    例のように区切りに「,（カンマ）」を使用してください" %>
   </div>
 
   <div class="submit">
     <%= f.submit '保存' %>
+  </div>
 <% end %>
 </div>
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   scope module: :public do
+    resource :map, only: [:show]
     get 'users/show'
     get 'users/edit'
     devise_for :users

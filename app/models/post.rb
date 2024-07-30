@@ -4,10 +4,14 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :post_comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :maps, dependent: :destroy
+
 
   validates :pref, presence: true
   validates :title, presence: true
-  validates :body, presence: true
+  #validates :address, presence: true
+
+
 
   def bookmarked_by?(user)
     bookmarks.exists?(user_id: user.id)
