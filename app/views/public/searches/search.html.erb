@@ -7,4 +7,7 @@
 
   <% elsif @model == 'post' %>
     <%= render 'public/posts/index', posts: @records %>
+
+  <% elsif @model == 'group' %>
+    <%= render 'public/groups/index', groups: @records %>
   <% end %>

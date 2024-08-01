@@ -10,7 +10,7 @@ class User < ApplicationRecord
       user.name = "guestuser"
     end
   end
-  
+
   def guest_user?
     email == GUEST_USER_EMAIL
   end
@@ -20,6 +20,9 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_one_attached :profile_image
   has_many :bookmarks, dependent: :destroy
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users
+  has_many :permits, dependent: :destroy
 
   def get_profile_image(width, height)
     unless profile_image.attached?

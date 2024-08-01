@@ -10,6 +10,7 @@ class Public::SearchesController < ApplicationController
       @records = User.search_for(@content, @method)
     else
       @records = Post.search_for(@content, @method)
+      @records = Group.search_for(@content, @method)
     end
   end
 

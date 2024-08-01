@@ -19,6 +19,13 @@ Rails.application.routes.draw do
 
     resources :users
     get '/search', to: 'searches#search'
+
+    resources :groups do
+      resource :permits, only: [:create, :destroy]
+      resource :group_users, only: [:create, :destroy]
+    end
+
+    get "groups/:id/permits" => "groups#permits", as: :permits
   end
 
 
@@ -33,6 +40,9 @@ Rails.application.routes.draw do
 
     get 'post_comment_dashboards', to: 'post_comment_dashboards#index'
     resources :post_comments, only: [:destroy]
+
+    get 'group_dashboards', to: 'group_dashboards#index'
+    resources :groups, only: [:destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -6,9 +6,11 @@
     <h2><%= @user.name %></h2>
     <% if @user ==current_user %>
     <% unless @user.guest_user? %>
-      <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary" %></p>
-    <% end %>
-    <% end %>
+      <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary" %>
+      <% end %>
+      <% end %>
+      <%= link_to "グループを作る", new_group_path, class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to "グループ一覧", groups_path, class: "btn btn-sm btn-outline-secondary" %>
   </div>
 </div>
 
