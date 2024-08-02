@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 2024_07_31_171007) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.string "adress"
   end
 
   create_table "users", force: :cascade do |t|
